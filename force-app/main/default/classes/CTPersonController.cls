@@ -40,7 +40,7 @@ public with sharing class CTPersonController {
     ];
   }
 
-  public static List<Person__c> getPersonById(String personId) {
+  public static Person__c getPersonById(String personId) {
     List<Person__c> people = [
       SELECT
         Id,
