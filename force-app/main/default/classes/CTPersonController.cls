@@ -39,4 +39,22 @@ public with sharing class CTPersonController {
       ORDER BY Status_Update_Date__c DESC
     ];
   }
+
+  public static List<Person__c> getPersonById(String personId) {
+    List<Person__c> people = [
+      SELECT
+        Id,
+        Name,
+        Health_Status__c,
+        Mobile__c,
+        Status_Update_Date__c,
+        Token__c
+      FROM Person__c
+      WHERE Id = :personId
+    ];
+    if (people != null && people.size() > 0) {
+      return people[0];
+    }
+    return null;
+  }
 }
