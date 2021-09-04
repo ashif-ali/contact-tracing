@@ -22,6 +22,7 @@ public with sharing class CTPersonController {
   }
 
   public static List<Person__c> searchPeople(String searchTerm) {
+    searchTerm = searchTerm + '%';
     return [
       SELECT
         Id,
@@ -32,9 +33,9 @@ public with sharing class CTPersonController {
         Token__c
       FROM Person__c
       WHERE
-        Name LIKE 'searchTerm%'
-        OR Mobile__c LIKE 'searchTerm%'
-        OR Token__c LIKE 'searchTerm%'
+        Name LIKE :searchTerm
+        OR Mobile__c LIKE :searchTerm
+        OR Token__c LIKE :searchTerm
       ORDER BY Status_Update_Date__c DESC
     ];
   }
